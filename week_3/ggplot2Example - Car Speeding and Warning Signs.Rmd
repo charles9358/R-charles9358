@@ -1,0 +1,55 @@
+---
+title: "Data Visualization"
+author: "CharlesSu"
+date: "2018年4月10日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ggplot2)
+data
+```
+
+# 單變數：類別型
+```{r}
+ggplot(data = data, aes(x = speed)) +
+geom_bar(fill = "lightblue", colour = "black")
+```
+
+# 單變數：連續型
+```{r}
+ggplot(data = data, aes(x = speed)) +
+geom_histogram()
+```
+
+
+# 雙變數：連續 vs 連續
+```{r}
+ggplot(data = data, aes(x = speed, y=period)) +
+geom_point()
+```
+
+# 雙變數：離散 vs 連續(此份檔案好像都是連續變數，沒有離散變數，所以維持原diamond)
+```{r}
+ggplot(diamonds, aes(x=clarity, y=depth)) +
+geom_boxplot()
+```
+
+# 多變量：汽車速度與警告標誌的關係
+```{r}
+library(ggplot2)
+library(GGally)
+library(scales)
+library(memisc)
+
+# 從數據集獲取200個樣本數據進行分析
+set.seed(20022012)
+data_samp <- data[sample(1:length(data$speed), 200), ]
+ggpairs(data_samp,lower= list(continuous = wrap("points", shape = I('.'))),
+        upper = list(combo = wrap("box", outlier.shape = I('.'))))
+```
+

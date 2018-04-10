@@ -1,0 +1,54 @@
+---
+title: "Data Visualization"
+author: "CharlesSu"
+date: "2018年4月10日"
+output: html_document
+---
+# 師大Google地圖
+```{r}
+library(ggmap)
+library(mapproj)
+map <- get_map(location = 'National Taiwan Normal University', zoom = 4)
+ggmap(map)
+map = get_googlemap(center= c(lon=median,lat=median)
+,zoom = 20 , maptype = "satellite")
+ggmap(map) 
+```
+```{r}
+map = get_googlemap(center= c(lon=median,lat=median)
+,zoom = 14 , maptype = "satellite")
+ggmap(map) 
+```
+```{r}
+map <- get_map(location = c(lon = 25.026186, lat = 121.527521),
+               zoom = 10, language = "zh-TW")
+ggmap(map)
+```
+```{r}
+map <- get_map(location = c(lon = 120.233937, lat = 22.993013),
+  zoom = 10, language = "zh-TW", maptype = "roadmap")
+ggmap(map)
+```
+
+
+
+# 雙變數：離散 vs 連續(此份檔案好像都是連續變數，沒有離散變數，所以維持原diamond)
+```{r}
+ggplot(diamonds, aes(x=clarity, y=depth)) +
+geom_boxplot()
+```
+
+# 多變量：汽車速度與警告標誌的關係
+```{r}
+library(ggplot2)
+library(GGally)
+library(scales)
+library(memisc)
+
+# 從數據集獲取200個樣本數據進行分析
+set.seed(20022012)
+data_samp <- data[sample(1:length(data$speed), 200), ]
+ggpairs(data_samp,lower= list(continuous = wrap("points", shape = I('.'))),
+        upper = list(combo = wrap("box", outlier.shape = I('.'))))
+```
+
