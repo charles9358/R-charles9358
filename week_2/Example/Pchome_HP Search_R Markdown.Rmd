@@ -1,0 +1,23 @@
+---
+title: "PChome_HP Search"
+author: "Charles9358"
+date: "2018年3月29日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 如何利用爬蟲工具在PChome抓取搜尋"HP"結果的商品資料
+
+1. 進入PChome首頁
+2. 在搜尋欄打"HP"搜尋
+3. 滑鼠右鍵選擇"檢查"，選擇Network > XHR
+4. 為了抓到搜尋資料，再點選一次搜尋
+5. 找到Status值為200的項目，點他看Headers，General中的Request URL
+6. 個人作法：我會複製網址，開來看看是不是我想要的 ex.我想看搜尋"HP"結果的商品資料
+　 (更快檢查法：連擊Name下的項目，讓他跑成code形式，檢查更快)
+7. 找到results?q=hp&page=1&sort=rnk/dc內的網址內容是我要的
+8. 複製其網址到以下套件
+9. 回到R，點選Source，跑出表格狀，由上到下跑出各項商品的資料表格就成功了！
